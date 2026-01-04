@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePlayer } from "../context/PlayerContext";
-import { removeTrackFromPlaylist } from "../services/playlistService";
+import { removeTrackFromPlaylist, fetchPlaylistTracks } from "../services/playlistService";
 
 export default function PlaylistSongs() {
   const { playlistId } = useParams();
@@ -13,10 +13,7 @@ export default function PlaylistSongs() {
   useEffect(() => {
     const loadSongs = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:5000/api/playlists/tracks/${playlistId}`
-        );
-        const data = await res.json();
+        const data = await fetchPlaylistTracks(playlistId);
         setSongs(data || []);
       } catch (err) {
         console.error("Failed to load playlist songs", err);

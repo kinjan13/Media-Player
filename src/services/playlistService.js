@@ -1,4 +1,6 @@
-const API_BASE = "http://localhost:5000/api/playlists";
+import API_BASE_URL from "./api";
+
+const API_BASE = `${API_BASE_URL}/api/playlists`;
 
 export async function fetchPlaylists(userId) {
   const res = await fetch(`${API_BASE}?user_id=${userId}`, {

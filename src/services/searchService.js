@@ -1,6 +1,8 @@
+import API_BASE_URL from "./api";
+
 export const searchMusic = async (query) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/music/search?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`${API_BASE_URL}/api/music/search?q=${encodeURIComponent(query)}`);
     if (!res.ok) throw new Error('Search failed');
     return await res.json();
   } catch (error) {
@@ -22,7 +24,7 @@ export const searchMusic = async (query) => {
 
 export const searchPodcasts = async (query) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/podcasts/search?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`${API_BASE_URL}/api/podcasts/search?q=${encodeURIComponent(query)}`);
     if (!res.ok) throw new Error('Search failed');
     return await res.json();
   } catch (error) {

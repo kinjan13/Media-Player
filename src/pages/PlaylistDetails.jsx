@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePlayer } from "../context/PlayerContext";
+import { fetchPlaylistTracks } from "../services/playlistService";
 
 export default function PlaylistDetails() {
   const { playlistId } = useParams();
@@ -9,8 +10,7 @@ export default function PlaylistDetails() {
   const { playTrack, playQueue } = usePlayer();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/playlists/tracks/${playlistId}`)
-      .then(res => res.json())
+    fetchPlaylistTracks(playlistId)
       .then(data => {
         setTracks(data);
         setLoading(false);
